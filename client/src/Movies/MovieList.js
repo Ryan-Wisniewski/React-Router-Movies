@@ -8,6 +8,7 @@ const MovieList = props => {
       axios
         .get('http://localhost:5000/api/movies')
         .then(response => {
+          console.log(response.data)
           setMovies(response.data);
         })
         .catch(error => {
@@ -20,7 +21,7 @@ const MovieList = props => {
   
   return (
     <div className="movie-list">
-      {this.state.movies.map(movie => (
+      {movies.map(movie => (
         <MovieDetails key={movie.id} movie={movie} />
       ))}
     </div>
