@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { Route, Switch, NavLink, Link } from 'react-router-dom';
 import { runInContext } from 'vm';
+import MovieCard from './MovieCard';
 
 const MovieList = props => {
   const [movies, setMovies] = useState([])
@@ -32,28 +33,15 @@ const MovieList = props => {
 }
 
 function MovieDetails({ movie }) {
-  const { title, director, metascore, stars, id } = movie;
-  return (
-    <NavLink to={`/movies/${id}`}>
-      <div className="movie-card">
-        <h2>{title}</h2>
-        <div className="movie-director">
-          Director: <em>{director}</em>
-        </div>
-        <div className="movie-metascore">
-          Metascore: <strong>{metascore}</strong>
-        </div>
-        <h3>Actors</h3>
-
-        {stars.map(star => (
-          <div key={star} className="movie-star">
-            {star}
-          </div>
-        ))}
-    
+  const { title, director, metascore, stars } = movie;
+    return(
+      <div className='movie-card'>
+        <Link to={`movies/${movie.id}`} >
+        <MovieCard movie={movie} />
+        </Link>
       </div>
-    </NavLink>
-  );
+    )
+
 }
 
 export default MovieList;
